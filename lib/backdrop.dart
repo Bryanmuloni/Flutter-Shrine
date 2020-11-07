@@ -54,11 +54,13 @@ class _FrontLayer extends StatelessWidget {
         children: <Widget>[
           // TODO: Add a GestureDetector (104)
           GestureDetector(
-          behavior: HitTestBehavior.opaque,
-        onTap: onTap,
-        child: Container(height: 40.0,
-        alignment: AlignmentDirectional.centerStart,) ,
-      ),
+            behavior: HitTestBehavior.opaque,
+            onTap: onTap,
+            child: Container(
+              height: 40.0,
+              alignment: AlignmentDirectional.centerStart,
+            ),
+          ),
           Expanded(
             child: child,
           ),
@@ -95,14 +97,15 @@ class _BackdropState extends State<Backdrop>
     _controller = AnimationController(
       duration: Duration(milliseconds: 300),
       value: 1.0,
-      vsync: this,
     );
   }
+
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
   }
+
   bool get _frontLayerVisible {
     final AnimationStatus status = _controller.status;
     return status == AnimationStatus.completed ||
@@ -157,9 +160,12 @@ class _BackdropState extends State<Backdrop>
       // TODO: Remove leading property (104)
       // TODO: Create title with _BackdropTitle parameter (104)
 //      leading: IconButton(icon: Icon(Icons.menu), onPressed: _toggleBackdropLayerVisibility,),
-      title: _BackdropTitle(frontTitle: widget.frontTitle, backTitle: widget
-          .backTitle,listenable: _controller.view,
-      onPress: _toggleBackdropLayerVisibility,),
+      title: _BackdropTitle(
+        frontTitle: widget.frontTitle,
+        backTitle: widget.backTitle,
+        listenable: _controller.view,
+        onPress: _toggleBackdropLayerVisibility,
+      ),
       actions: <Widget>[
         // TODO: Add shortcut to login screen from trailing icons (104)
         IconButton(
@@ -240,7 +246,8 @@ class _BackdropTitle extends AnimatedWidget {
                   end: Offset(1.0, 0.0),
                 ).evaluate(animation),
                 child: ImageIcon(AssetImage('assets/diamond.png')),
-              )]),
+              )
+            ]),
           ),
         ),
         // Here, we do a custom cross fade between backTitle and frontTitle.
